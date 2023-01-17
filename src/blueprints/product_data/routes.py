@@ -1,10 +1,10 @@
 from flask import Blueprint, request
-
 from src.config import settings
+import requests
 
 router = Blueprint('product_data', __name__, url_prefix='/api')
 
-@router.route('/product_data', methods=['POST', 'GET'])
+@router.route('/product_data', methods=['POST'])
 def product_data():
 
     try:
@@ -13,9 +13,7 @@ def product_data():
 
     except:
         return 'no json error'
-        pass
 
-    
 
     return 'hi'
 
