@@ -14,6 +14,16 @@ Each Endpoint will accept the following arguments.
 
 Product Data will accept a list of products are that to be sent in json format. 
 
+# HOW TO GET IT STARTED
+
+
+
+# HOW IT WORKS
+
+
+
+
+
 # THE THREE ENDPOINTS
 
 *PRODUCTS*
@@ -48,7 +58,7 @@ Product Data will accept a list of products are that to be sent in json format.
 
 
 *ORDER STATUS*
-Order Status will accept a list of products are that to be sent in json format. 
+Order Status will accept a list of status_packets are that to be sent in json format. 
 
 "statusPackets": [{
     "timeStamp": "2016-07-29T17:10:41Z",
