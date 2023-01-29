@@ -84,9 +84,12 @@ class product_data_update_Product(BaseModel):
 
 
 
+
+
+
+
+
 # !!! SCHEMAS FOR ORDER STATUS !!!
-
-
 class order_status_update_CustomerRec(BaseModel):
     acctNum: constr(max_length=25)
     company: Optional[constr(max_length=200)]
@@ -111,8 +114,17 @@ class order_status_update_StatusRec(BaseModel):
     sageOrderId: Optional[int]
     statusId: int #if the status name is provided, this field is optional
     statusName: constr(max_length=25)
-    comments: Optional[constr(max_length=25)]
-    responseRequired: bool
+    comments: Optional[constr(max_length=200)]
+    responseRequired: Optional[bool]
+    respondToName: Optional[constr(max_length=200)]
+    respondToEmail: Optional[constr(max_length=200)]
+    respondToPhone: Optional[constr(max_length=25)]
+    expectedShipDate: Optional[datetime]
+    expectedDeliveryDate: Optional[datetime]
+    shipments: Optional[List[order_status_update_ShipmentRec]]
+    delete: Optional[bool]
+
+
 
 
 class order_status_update_Request(AuthenticationObject, BaseRequestObject):
@@ -121,3 +133,41 @@ class order_status_update_Request(AuthenticationObject, BaseRequestObject):
     # pass
 
 
+
+
+
+
+
+
+# !!! SCHEMAS FOR INVENTORY !!!
+
+
+class inventory_update_Attribute(BaseModel):
+    typeId: int
+    name: Optional[constr(max_length=25)]
+    value: str
+
+class inventory_update_Skus(BaseModel):
+    attributes: Optional[List[inventory_update_Attribute]]
+    onHand: Optional[int]
+    onHandAdd: Optional[int]
+    onOrder: Optional[int]
+    onOrderExpectedDate: Optional[datetime]
+    refreshLeadDays: Optional[int]
+    warehouseId: Optional[int]
+    warehouseCountry: Optional[constr(max_length=2)]
+    warehouseZip: Optional[constr(max_length=10)]
+    memo: Optional[constr(max_length=200)]
+    notStockable: Optional[bool]
+
+
+class inventory_update_Product(BaseModel):
+    productId: int
+    itmeNum: constr(max_length=25)
+    skus: List[str]
+    timestamp: datetime
+
+class inventory_update_Request(AuthenticationObject, BaseRequestObject):
+    statusPackets: List[order_status_update_StatusRec]
+    # pass
+    # pass
